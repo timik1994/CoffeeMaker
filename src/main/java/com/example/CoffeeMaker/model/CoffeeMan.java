@@ -17,8 +17,8 @@ public class CoffeeMan {
     @Column(name="name")
     private String name; // имя пользователя
 
-    @Column(name = "time")
-    private Date time; // время запуска
+    @Column(name = "dt")
+    private Date dt; // время и дата запуска
 
     @Column(name = "coffee")
     private String coffee; // тип кофе

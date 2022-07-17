@@ -20,16 +20,8 @@ public class CoffeemanController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "redirect:/students";
-    }
-
-    // Информацию будем дергать не из репозитория а из UserService- так правильно.!
-    @GetMapping("/coffeeMEN")
-    public String findAll(Model model) {
-        List<CoffeeMan> coffeeMEN = userService.findAll();
-        model.addAttribute("coffeeMEN", coffeeMEN);
-        return "coffeeMEN-list";
+    public List<CoffeeMan> readAll() {
+        List<CoffeeMan> coffeemen = userService.readAll();
+        return coffeemen;
     }
 }
