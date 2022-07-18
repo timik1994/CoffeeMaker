@@ -22,7 +22,6 @@ public class CoffeeMakerApplication {
 		return new OpenAPI()
 				.addServersItem(new Server().url("/"))
 				.info(new Info().title("Сервис управления кофеваркой")
-						.description("Описание того что делает сервис"));
+						.description("Управление кофеваркой через браузер"));
 	}
-
 }

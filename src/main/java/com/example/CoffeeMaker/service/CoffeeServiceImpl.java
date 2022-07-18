@@ -1,5 +1,6 @@
 package com.example.CoffeeMaker.service;
 
+import com.example.CoffeeMaker.enums.StrengthOfCoffee;
 import com.example.CoffeeMaker.enums.TypeOfCoffeeDrink;
 import com.example.CoffeeMaker.object.CoffeeMakerConsumablesAndStatus;
 import com.example.CoffeeMaker.repository.CoffeemanRepository;
@@ -68,7 +69,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     }
 
     @Override
-    public void coffeeStrength(Integer coffeeStrength) {
+    public void coffeeStrength(StrengthOfCoffee strengthOfCoffee) {
     }
 
     @Override
