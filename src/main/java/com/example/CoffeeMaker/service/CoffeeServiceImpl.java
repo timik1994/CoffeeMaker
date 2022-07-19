@@ -4,7 +4,7 @@ import com.example.CoffeeMaker.enums.StrengthOfCoffee;
 import com.example.CoffeeMaker.enums.TypeOfCoffeeDrink;
 import com.example.CoffeeMaker.model.CoffeeMakerLog;
 import com.example.CoffeeMaker.object.CoffeeMakerConsumablesAndStatus;
-import com.example.CoffeeMaker.repository.CoffeeMaker;
+import com.example.CoffeeMaker.repository.CoffeeMakerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +14,12 @@ import java.util.Date;
 @Service
 public class CoffeeServiceImpl implements CoffeeService {
 
-    private final CoffeeMaker coffeeMakerRepository;
+    private final CoffeeMakerRepository coffeeMakerRepository;
     private static CoffeeMakerConsumablesAndStatus coffeeMakerConsumablesAndStatus =
             new CoffeeMakerConsumablesAndStatus(1000, 1000, 1000, false);
 
     @Autowired
-    public CoffeeServiceImpl(CoffeeMaker coffeeMakerRepository) {
+    public CoffeeServiceImpl(CoffeeMakerRepository coffeeMakerRepository) {
         this.coffeeMakerRepository = coffeeMakerRepository;
     }
 
