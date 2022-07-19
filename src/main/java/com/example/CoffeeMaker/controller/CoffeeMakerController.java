@@ -37,61 +37,46 @@ public class CoffeeMakerController {
     @GetMapping(value = "/coffeeMaker/getWaterLevel")
     @Operation(tags = "03. Проверить уровень воды")
     public String checkWaterLevel() {
-        return coffeeService.checkWaterLevel() ? "Воды достаточно" : "Воды не хватает";
+        int lastWaterLevel=coffeeService.getWaterLevel();
+        return coffeeService.checkWaterLevel() ? ("Воды достаточно: " + lastWaterLevel + " мл") : ("Воды не хватает: " + lastWaterLevel + " мл");
     }
 
     @GetMapping(value = "/coffeeMaker/refillWater")
     @Operation(tags = "04. Долить воду")
     public String refillWater() {
-        coffeeService.refillWater();
-        return coffeeService.checkWaterLevel() ? "Воды достаточно" : "Воды не хватает";
+        return coffeeService.refillWater();
     }
 
     @GetMapping(value = "/coffeeMaker/getMilkLevel")
     @Operation(tags = "05. Проверить уровень молока")
     public String checkMilkLevel() {
-        return coffeeService.checkMilkLevel() ? "Молока достаточно" : "Молока не хватает";
+        int lastMilkLevel=coffeeService.getWaterLevel();
+        return coffeeService.checkMilkLevel() ? ("Молока достаточно: " + lastMilkLevel + " мл") : ("Молока не хватает: " + lastMilkLevel + " мл");
     }
 
     @GetMapping(value = "/coffeeMaker/refillMilk")
     @Operation(tags = "06. Долить молока")
     public String refillMilk() {
-        coffeeService.refillMilk();
-        return coffeeService.checkMilkLevel() ? "Молока достаточно" : "Молока не хватает";
+        return coffeeService.refillMilk();
     }
 
     @GetMapping(value = "/coffeeMaker/getGrainsLevel")
     @Operation(tags = "07. Проверить количество зерен")
     public String checkGrainsLevel() {
-        return coffeeService.checkGrainsLevel() ? "Зерен достаточно" : "Зерен не хватает";
+        int lastGrainsLevel=coffeeService.getGrainsLevel();
+        return coffeeService.checkGrainsLevel() ? ("Зерен достаточно: " + lastGrainsLevel +" г") : ("Зерен не хватает: " + lastGrainsLevel + " г");
     }
 
     @GetMapping(value = "/coffeeMaker/refillGrains")
     @Operation(tags = "08. Досыпать зерен")
     public String refillGrains() {
-        coffeeService.refillGrains();
-        return coffeeService.checkGrainsLevel() ? "Зерен достаточно" : "Зерен не хватает";
+        return coffeeService.refillGrains();
     }
 
-    @PostMapping(value = "/coffeeMaker/selectedCoffeeStrength")
-    @Operation(tags = "09. Выбрать крепость кофе")
-    public String selectedCoffeeStrength(StrengthOfCoffee strengthOfCoffee) {
-        coffeeService.coffeeStrength(strengthOfCoffee);
-        return "Установлена крепость кофе = " + strengthOfCoffee;
-    }
-
-
-    @PostMapping(value = "/coffeeMaker/selectedCoffeeType")
-    @Operation(tags = "10. Выбрать кофе")
-    public String selectedCoffeeType(TypeOfCoffeeDrink typeOfCoffeeDrink) {
-        coffeeService.CoffeeType(typeOfCoffeeDrink);
-        return "Выбрано кофе: " + typeOfCoffeeDrink;
-    }
-
-    @GetMapping(value = "/coffeeMaker/makeCoffee")
-    @Operation(tags = "11. Сварить кофе")
-    public String makeCoffee() {
-        coffeeService.makeCoffee();
-        return "Кофе готов. Приятного кофепития!";
+    @PostMapping(value = "/coffeeMaker/makeCoffee")
+    @Operation(tags = "09. Сварить кофе")
+    public String makeCoffee(StrengthOfCoffee strengthOfCoffee, TypeOfCoffeeDrink typeOfCoffeeDrink) {
+        // String message = result ? ("Готов кофе" + typeOfCoffeeDrink.getNameCoffeeDrink() +  " с крепостью  " + strengthOfCoffee.getStrength());
+        return coffeeService.makeCoffee(typeOfCoffeeDrink,strengthOfCoffee);
     }
 }

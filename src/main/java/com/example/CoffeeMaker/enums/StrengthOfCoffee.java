@@ -1,5 +1,8 @@
 package com.example.CoffeeMaker.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum StrengthOfCoffee {
     LOW(1),
     MEDIUM(2),

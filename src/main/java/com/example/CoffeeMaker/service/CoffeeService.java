@@ -10,30 +10,24 @@ public interface CoffeeService {
     Boolean checkWaterLevel();
 
     /**Залить воду*/
-    void refillWater();
+    String refillWater();
 
     /**Проверить наличие зерен**/
     Integer getGrainsLevel();
     Boolean checkGrainsLevel();
 
     /**Засыпать зерна*/
-    void refillGrains();
+    String refillGrains();
 
     /**Проверить наличие молока**/
     Integer getMilkLevel();
     Boolean checkMilkLevel();
 
     /**Залить молоко**/
-    void refillMilk();
-
-    /**Выбрать крепость кофе**/
-    void coffeeStrength(StrengthOfCoffee strengthOfCoffee);
-
-    /**Выбрать тип кофе**/
-    void CoffeeType(TypeOfCoffeeDrink typeOfCoffeeDrink);
+    String refillMilk();
 
     /**Приготовить кофе**/
-    void makeCoffee();
+    String makeCoffee(TypeOfCoffeeDrink typeOfCoffeeDrink, StrengthOfCoffee strengthOfCoffee);
 
     /**Проверить включена ли кофеварка**/
     Boolean checkTurnOn();

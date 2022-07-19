@@ -15,9 +15,9 @@ public class CoffeeMakerConsumablesAndStatus {
 
     @Override
     public String toString() {
-        return "Уровень воды = " + this.volumeWater / 10 + "%" +
-                "Уровень молока = " + this.volumeMilk / 10 + "%" +
-                "Количество зерен = " + this.volumeGrains / 10 + "%" +
-                "Статус кофеварки =" + (this.isPower ? "включена" : "выключена");
+        return "Уровень воды = " + this.volumeWater + " мл\n" +
+                "Уровень молока = " + this.volumeMilk + " мл\n" +
+                "Количество зерен = " + this.volumeGrains  + " г\n" +
+                "Статус кофеварки =" + (this.isPower ? " включена" : " выключена");
     }
 }
