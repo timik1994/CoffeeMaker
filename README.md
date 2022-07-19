@@ -13,4 +13,4 @@
 9) Перед тем, как сварить кофе, необходимо включить кофеварку.
 
 ## Используемый стек технологий:
-Java 11, Spring Boot, PostgresSQL, SwaggerUI, Lombok, Hibernate, JRA repository, система MVC, Gradle, в построении приложении использовался подход REST FULL APPLICATION. 
+Java 11, Spring Boot, PostgresSQL, SwaggerUI, Lombok, Hibernate, JRA repository, модель MVC, Gradle, в построении приложении использовался подход REST FULL APPLICATION. 
