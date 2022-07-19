@@ -76,7 +76,6 @@ public class CoffeeMakerController {
     @PostMapping(value = "/coffeeMaker/makeCoffee")
     @Operation(tags = "09. Сварить кофе")
     public String makeCoffee(StrengthOfCoffee strengthOfCoffee, TypeOfCoffeeDrink typeOfCoffeeDrink) {
-        // String message = result ? ("Готов кофе" + typeOfCoffeeDrink.getNameCoffeeDrink() +  " с крепостью  " + strengthOfCoffee.getStrength());
         return coffeeService.makeCoffee(typeOfCoffeeDrink,strengthOfCoffee);
     }
 }

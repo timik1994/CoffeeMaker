@@ -14,84 +14,89 @@ import java.util.Date;
 @Service
 public class CoffeeServiceImpl implements CoffeeService {
 
-    private final CoffeeMaker coffeeMaker;
+    private final CoffeeMaker coffeeMakerRepository;
     private static CoffeeMakerConsumablesAndStatus coffeeMakerConsumablesAndStatus =
             new CoffeeMakerConsumablesAndStatus(1000, 1000, 1000, false);
 
     @Autowired
-    public CoffeeServiceImpl(CoffeeMaker coffeeMaker) {
-        this.coffeeMaker = coffeeMaker;
+    public CoffeeServiceImpl(CoffeeMaker coffeeMakerRepository) {
+        this.coffeeMakerRepository = coffeeMakerRepository;
     }
 
     @Override
-    public Integer getWaterLevel() {return coffeeMakerConsumablesAndStatus.getVolumeWater();}
+    public Integer getWaterLevel() {
+        return coffeeMakerConsumablesAndStatus.getVolumeWater();
+    }
 
     @Override
     public Boolean checkWaterLevel() {
-        saveLog(null,null, "Проверка уровня воды. Вода на уровне: " + coffeeMakerConsumablesAndStatus.getVolumeWater() + " мл");
+        saveLog(null, null, "Проверка уровня воды. Вода на уровне: " + coffeeMakerConsumablesAndStatus.getVolumeWater() + " мл");
         return coffeeMakerConsumablesAndStatus.getVolumeWater() > 50;
     }
 
     @Override
     public String refillWater() {
         String message;
-        if (coffeeMakerConsumablesAndStatus.getVolumeWater()<1000) {
+        if (coffeeMakerConsumablesAndStatus.getVolumeWater() < 1000) {
             coffeeMakerConsumablesAndStatus.setVolumeWater(1000);
-            message="Вода заполнена до отметки: 1000 мл";
+            message = "Вода заполнена до отметки: 1000 мл";
             saveLog(null, null, message);
+            return message;
         }
-        else {
-            message="Вода уже заполнена до максимума!";
-            saveLog(null, null, message );
-        }
+        message = "Вода уже заполнена до максимума!";
+        saveLog(null, null, message);
         return message;
     }
 
     @Override
-    public Integer getGrainsLevel() {return coffeeMakerConsumablesAndStatus.getVolumeGrains();}
+    public Integer getGrainsLevel() {
+        return coffeeMakerConsumablesAndStatus.getVolumeGrains();
+    }
 
     @Override
     public Boolean checkGrainsLevel() {
-        saveLog(null,null, "Проверка уровня зерен. Зерна на уровне: " + coffeeMakerConsumablesAndStatus.getVolumeGrains() + " г");
+        saveLog(null, null, "Проверка уровня зерен. Зерна на уровне: " + coffeeMakerConsumablesAndStatus.getVolumeGrains() + " г");
         return coffeeMakerConsumablesAndStatus.getVolumeGrains() > 50;
     }
 
     @Override
     public String refillGrains() {
         String message;
-        if (coffeeMakerConsumablesAndStatus.getVolumeGrains()<1000) {
+        if (coffeeMakerConsumablesAndStatus.getVolumeGrains() < 1000) {
             coffeeMakerConsumablesAndStatus.setVolumeGrains(1000);
-            message="Зерна заполнены до отметки: 1000 г";
+            message = "Зерна заполнены до отметки: 1000 г";
             saveLog(null, null, message);
+            return message;
         }
-        else {
-            message="Зерна уже заполнены до максимума!";
-            saveLog(null, null, message );
-        }
+
+        message = "Зерна уже заполнены до максимума!";
+        saveLog(null, null, message);
         return message;
     }
 
+
     @Override
-    public Integer getMilkLevel() {return coffeeMakerConsumablesAndStatus.getVolumeMilk();}
+    public Integer getMilkLevel() {
+        return coffeeMakerConsumablesAndStatus.getVolumeMilk();
+    }
 
     @Override
     public Boolean checkMilkLevel() {
-        saveLog(null,null, "Проверка уровня молока. Молоко на уровне: " + coffeeMakerConsumablesAndStatus.getVolumeMilk());
+        saveLog(null, null, "Проверка уровня молока. Молоко на уровне: " + coffeeMakerConsumablesAndStatus.getVolumeMilk());
         return coffeeMakerConsumablesAndStatus.getVolumeMilk() > 50;
     }
 
     @Override
     public String refillMilk() {
         String message;
-        if (coffeeMakerConsumablesAndStatus.getVolumeMilk()<1000) {
+        if (coffeeMakerConsumablesAndStatus.getVolumeMilk() < 1000) {
             coffeeMakerConsumablesAndStatus.setVolumeMilk(1000);
-            message="Молоко заполнено до отметки: 1000 мл";
+            message = "Молоко заполнено до отметки: 1000 мл";
             saveLog(null, null, message);
+            return message;
         }
-        else {
-            message="Молоко уже заполнено до максимума!";
-            saveLog(null, null, message );
-        }
+        message = "Молоко уже заполнено до максимума!";
+        saveLog(null, null, message);
         return message;
     }
 
@@ -157,7 +162,7 @@ public class CoffeeServiceImpl implements CoffeeService {
         coffeeMakerLog.setOperationName(message);
 
         if (typeOfCoffeeDrink == null && strengthOfCoffee == null) {
-            coffeeMaker.save(coffeeMakerLog);
+            coffeeMakerRepository.save(coffeeMakerLog);
             return;
         }
 
@@ -171,7 +176,7 @@ public class CoffeeServiceImpl implements CoffeeService {
         coffeeMakerLog.setConsumerMilk(milk);
         coffeeMakerLog.setConsumerWater(water);
 
-        coffeeMaker.save(coffeeMakerLog);
+        coffeeMakerRepository.save(coffeeMakerLog);
     }
 
     private void whiteOffConsumables(TypeOfCoffeeDrink typeOfCoffeeDrink, StrengthOfCoffee strengthOfCoffee) {
